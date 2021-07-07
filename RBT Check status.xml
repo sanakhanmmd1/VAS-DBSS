@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ECARE_INSEQUENCE_RBT_DBSS_CHECK_STATUS" xmlns="http://ws.apache.org/ns/synapse">
+	<log level="custom">
+		<property name="In ECARE_INSEQUENCE_RBT_CHECK_STATUS Sequence" value="***************************"/>
+		<property expression="$ctx:uri.var.msisdn" name="MSISDN" xmlns:ns="http://org.apache.synapse/xsd"/>
+	</log>
+	<property expression="$ctx:uri.var.msisdn" name="MSISDN" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="fn:substring-after(get-property('MessageID'),'urn:uuid:')" name="TRANSACTION_ID" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<call>
+		<endpoint key="CHECK_STATUS_DBSS"/>
+	</call>
+	<log level="custom">
+		<property name="After Calling" value="CHECK_STATUS_DBSS"/>
+		<property expression="json-eval($.data[0].attributes.status)" name="SuccessCase" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.periodic-amount)" name="periodic-amount" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.periodic-unit)" name="periodic-unit" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.long-info-text)" name="longinfotext" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.ussd-code)" name="ussd-code" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.tags[0])" name="tags" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.short-description)" name="short-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.code)" name="code" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.long-description)" name="long-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.allow-re-activation)" name="allow-re-activation" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.charge-type)" name="charge-type" xmlns:ns="http://org.apache.synapse/xsd"/>
+		<property expression="json-eval($.included[0].attributes.medium-description)" name="medium-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+	</log>
+	<property expression="json-eval($.data[0].attributes.status)" name="SuccessCase" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.periodic-amount)" name="periodic-amount" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.periodic-unit)" name="periodic-unit" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.long-info-text)" name="longinfotext" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.ussd-code)" name="ussd-code" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.tags[0])" name="tags" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.short-description)" name="short-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.code)" name="code" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.long-description)" name="long-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.allow-re-activation)" name="allow-re-activation" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.charge-type)" name="charge-type" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="json-eval($.included[0].attributes.medium-description)" name="medium-description" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property name="LOG_RESPONSE_STATUS" value="OK"/>
+	<filter regex="active" source="$ctx:SuccessCase" xmlns:ns="http://org.apache.synapse/xsd">
+		<then>
+			<log level="custom">
+				<property expression="$ctx:uri.var.msisdn" name="MSISDN"/>
+				<property name="Case" value="Active"/>
+				<property name="subscription" value="Successfully subscribed"/>
+			</log>
+			<payloadFactory media-type="json">
+				<format>{"status":"$1","reason":"$2"}</format>
+				<args>
+					<arg evaluator="xml" expression="$ctx:SuccessCase" literal="false"/>
+					<arg literal="false" value="Successfully subscribed"/>
+				</args>
+			</payloadFactory>
+			<respond/>
+		</then>
+	</filter>
+	<filter xmlns:ns="http://org.apache.synapse/xsd" xpath="$ctx:SuccessCase = ''">
+		<then>
+			<payloadFactory media-type="json">
+				<format>{"status":"$1", "resultDesc":"Not A Subscriber", "data":null}</format>
+				<args>
+					<arg literal="false" value="NOT Active"/>
+				</args>
+			</payloadFactory>
+			<respond/>
+		</then>
+	</filter>
+	<property expression="$ctx:uri.var.msisdn" name="MSISDN" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<property expression="fn:substring-after(get-property('MessageID'),'urn:uuid:')" name="TRANSACTION_ID" xmlns:ns="http://org.apache.synapse/xsd"/>
+	<payloadFactory media-type="json">
+		<format>{ "errors": [{ "Reason": "404","status":"$1", "SuccessCase": "Not Found", "detail": "The requested resource could not be found but may be available again in the future." }] }</format>
+		<args>
+			<arg evaluator="xml" expression="$ctx:SuccessCase" literal="false" xmlns:ns="http://org.apache.synapse/xsd"/>
+			<arg literal="false" value="Failed"/>
+		</args>
+	</payloadFactory>
+	<property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+	<respond/>
+</sequence>

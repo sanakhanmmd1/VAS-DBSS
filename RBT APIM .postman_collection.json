@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "db446441-9593-408a-ac92-91ea46cabd11",
+		"name": "RBT APIM ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "APIM RBT Unsubscribe https",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "9c56f5b8-4acb-3a85-ba10-9319c6e9779e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"msisdn\":\"923011104178\",\r\n \"tokenId\":\"DATA7DAYSLITE300MB\",\r\n   \"transaction_id\":13233\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/rbtdbss/unsubscribe",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"rbtdbss",
+						"unsubscribe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM RBT subscribe https",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "167b7f02-3d66-3f55-870a-4cc5ac778f9a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"msisdn\":\"923011104178\",\r\n\"tokenId\":\"MIXDAYBUNDLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/rbtdbss/subscribe",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"rbtdbss",
+						"subscribe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM RBT Check_Status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "c86b0fc5-97d6-34b4-9777-3f9c157d2258",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://loadtest.jazz.com.pk:8245/ecaredbss/rbtdbss/checkstatus/923011104178",
+					"protocol": "https",
+					"host": [
+						"loadtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"port": "8245",
+					"path": [
+						"ecaredbss",
+						"rbtdbss",
+						"checkstatus",
+						"923011104178"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Generation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QWRfZjltR2JmS2NTYkc3UUp2U21OQnpHdEgwYTpGdGJHdHFDMUJCM2pzbTNReWxWeF9ib21Vc1Vh"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/token",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

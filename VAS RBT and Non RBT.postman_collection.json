@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "d2139ad9-f18c-40a8-8353-f7591ba05f41",
+		"name": "VAS RBT and Non RBT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "APIM vas non rbt sub",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eda133b6-0c0c-3e7b-83bb-659817fb7de4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"ServiceCode\":\"MIXDAYBUNDLE\",\r\n   \"ServiceGroup\":\"\",\r\n   \"transaction_id\":13233\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/subscribe/923011104178/jazz/pospaid",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"subscribe",
+						"923011104178",
+						"jazz",
+						"pospaid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM vas non rbt unsub",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eda133b6-0c0c-3e7b-83bb-659817fb7de4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"ServiceCode\":\"MIXDAYBUNDLE\",\r\n   \"ServiceGroup\":\"\",\r\n   \"transaction_id\":13233\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/unsubscribe/923011104178/jazz/pospaid",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"unsubscribe",
+						"923011104178",
+						"jazz",
+						"pospaid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM vas non rbt sub asset",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "96bf93ae-c66b-3816-9ef7-ee6f95131d3a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"ServiceCode\":\"MIXDAYBUNDLE\",\r\n   \"ServiceGroup\":\"\",\r\n   \"transaction_id\":13233\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/subsciberasset/923011104178/jazz/pospaid",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"subsciberasset",
+						"923011104178",
+						"jazz",
+						"pospaid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM RBT Check_Status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "96bf93ae-c66b-3816-9ef7-ee6f95131d3a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://apimtest.jazz.com.pk/ecaredbss/rbtdbss/checkstatus/923011104178",
+					"protocol": "http",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"rbtdbss",
+						"checkstatus",
+						"923011104178"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM RBT subscribe https",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "96bf93ae-c66b-3816-9ef7-ee6f95131d3a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"msisdn\":\"923011104178\",\r\n\"tokenId\":\"MIXDAYBUNDLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/ecaredbss/rbtdbss/subscribe",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"ecaredbss",
+						"rbtdbss",
+						"subscribe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Generation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QWRfZjltR2JmS2NTYkc3UUp2U21OQnpHdEgwYTpGdGJHdHFDMUJCM2pzbTNReWxWeF9ib21Vc1Vh"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://apimtest.jazz.com.pk/token",
+					"protocol": "https",
+					"host": [
+						"apimtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIM RBT Unsubscribe https",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "96bf93ae-c66b-3816-9ef7-ee6f95131d3a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "channel",
+						"value": "BSSAPI",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"msisdn\":\"923011104178\",\r\n \"tokenId\":\"DATA7DAYSLITE300MB\",\r\n   \"transaction_id\":13233\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://loadtest.jazz.com.pk:8282/ecaretest/dbss/rbtdbss/unsubscribe",
+					"protocol": "http",
+					"host": [
+						"loadtest",
+						"jazz",
+						"com",
+						"pk"
+					],
+					"port": "8282",
+					"path": [
+						"ecaretest",
+						"dbss",
+						"rbtdbss",
+						"unsubscribe"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
